@@ -128,7 +128,18 @@ namespace AutotestTFS
             qPage.AssertToSearch.SendKeys("tmironenko");
             qPage.AssertToSearch.SendKeys(Keys.Tab);
             qPage.Save.Click();
-            wait.Until(ExpectedConditions.ElementToBeClickable(qPage.FieldTitle));
+            qPage.WaitForLoadApplication();
+            qPage.FieldState.Clear();
+            qPage.FieldState.Click();
+            qPage.FieldState.SendKeys("Active");
+            qPage.Save.Click();
+            qPage.WaitForLoadApplication();
+            qPage.FieldState.Clear();
+            qPage.FieldState.Click();
+            qPage.FieldState.SendKeys("Closed");
+            qPage.Save.Click();
+            qPage.WaitForLoadApplication();
+            //wait.Until(ExpectedConditions.ElementToBeClickable(qPage.FieldTitle));
             driver.Close();
             driver.Quit();
         }

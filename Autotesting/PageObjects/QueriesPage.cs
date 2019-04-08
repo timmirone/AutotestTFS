@@ -22,16 +22,19 @@ namespace AutotestTFS.PageObjects
         [FindsBy(How = How.XPath, Using = "//div[contains(@class,'leftPane')]//span[text()='Task']")]
         public IWebElement CreationTask;
 
-        [FindsBy(How = How.XPath, Using = "//div[contains(@class,'rightPane')]//input[@aria-label='Поле заголовка']")]
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class,'rightPane')]//input[@aria-label='Поле заголовка' and @aria-invalid='true']")]
         public IWebElement FieldTitle;
 
-        [FindsBy(How = How.XPath, Using = "//div[contains(@class,'rightPane')]//div[@aria-label='Назначено полю']")]
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class,'rightPane')]//span[@aria-label='Выбранное удостоверение ']//ancestor::div[@aria-label='Назначено полю']")]
         public IWebElement AssertTo;
 
-        [FindsBy(How = How.XPath, Using = "//div[contains(@class,'rightPane')]//input[@aria-label='Поиск среди пользователей']")]
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class,'rightPane')]//input[@aria-label='Поиск среди пользователей' and @aria-expanded='true']")]
         public IWebElement AssertToSearch;
 
-        [FindsBy(How = How.XPath, Using = "//div[contains(@class,'rightPane')]//span[text()='Сохранить']")]
+        [FindsBy(How = How.XPath, Using = "(//div[contains(@class,'rightPane')]//span[@aria-label='State']//ancestor::div[@class='work-item-header-control-container']//div[@class='wrap']//input)[last()]")]
+        public IWebElement FieldState;
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class,'rightPane')]//li[@aria-disabled='false']//span[text()='Сохранить']")]
         public IWebElement Save;
     }
 }

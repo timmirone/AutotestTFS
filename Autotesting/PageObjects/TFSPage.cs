@@ -58,5 +58,11 @@ namespace AutotestTFS.PageObjects
             WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, timeoutSec));
             wait.Until(wd => js.ExecuteScript("return document.readyState").ToString() == "complete");
         }
+        
+        public void WaitForLoadApplication()
+        {
+            WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
+            wait.Until(wd => !(driver.FindElement(By.CssSelector("div.control-busy-overlay")).Displayed));
+        }
     }
 }
