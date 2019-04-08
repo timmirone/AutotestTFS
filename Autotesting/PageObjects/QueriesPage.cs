@@ -16,11 +16,17 @@ namespace AutotestTFS.PageObjects
 
         }
 
+        [FindsBy(How = How.XPath, Using = "//a/div[contains(text(),'Назначено мне')]")]
+        public IWebElement AssignToMe;
+
         [FindsBy(How = How.XPath, Using = "//div[contains(@class,'leftPane')]//span[text()='Создание']")]
         public IWebElement Creation;
 
         [FindsBy(How = How.XPath, Using = "//div[contains(@class,'leftPane')]//span[text()='Task']")]
         public IWebElement CreationTask;
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class,'leftPane')]//span[text()='Bug']")]
+        public IWebElement CreationBug;
 
         [FindsBy(How = How.XPath, Using = "//div[contains(@class,'rightPane')]//input[@aria-label='Поле заголовка' and @aria-invalid='true']")]
         public IWebElement FieldTitle;

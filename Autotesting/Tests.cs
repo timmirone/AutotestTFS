@@ -139,6 +139,18 @@ namespace AutotestTFS
             qPage.FieldState.SendKeys("Closed");
             qPage.Save.Click();
             qPage.WaitForLoadApplication();
+            wait.Until(ExpectedConditions.ElementToBeClickable(qPage.Creation)).Click();
+            wait.Until(ExpectedConditions.ElementToBeClickable(qPage.CreationBug)).Click();
+            qPage.WaitForLoadPage(driver);
+            Assert.AreEqual(driver.FindElement(By.ClassName("info-text")).Text, "Поле \"Title\" не может быть пустым.");
+            qPage.FieldTitle.SendKeys("testBug");
+            qPage.AssertTo.Click();
+            qPage.AssertToSearch.SendKeys("tmironenko");
+            qPage.AssertToSearch.SendKeys(Keys.Tab);
+            qPage.Save.Click();
+            qPage.WaitForLoadApplication();
+            wait.Until(ExpectedConditions.ElementToBeClickable(qPage.AssignToMe)).Click();
+            qPage.WaitForLoadApplication();
             //wait.Until(ExpectedConditions.ElementToBeClickable(qPage.FieldTitle));
             driver.Close();
             driver.Quit();
