@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AutotestTFS.PageObjects
@@ -57,12 +58,14 @@ namespace AutotestTFS.PageObjects
             int timeoutSec = 15;
             WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, timeoutSec));
             wait.Until(wd => js.ExecuteScript("return document.readyState").ToString() == "complete");
+            Thread.Sleep(100);
         }
         
         public void WaitForLoadApplication()
         {
             WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
             wait.Until(wd => !(driver.FindElement(By.CssSelector("div.control-busy-overlay")).Displayed));
+            Thread.Sleep(100);
         }
     }
 }

@@ -28,6 +28,9 @@ namespace AutotestTFS.PageObjects
         [FindsBy(How = How.XPath, Using = "//div[contains(@class,'leftPane')]//span[text()='Bug']")]
         public IWebElement CreationBug;
 
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class,'rightPane')]//div[@aria-label='Таблица результатов запросов']//span[@aria-label='Обновить']")]
+        public IWebElement UpdateList;
+
         [FindsBy(How = How.XPath, Using = "//div[contains(@class,'rightPane')]//input[@aria-label='Поле заголовка' and @aria-invalid='true']")]
         public IWebElement FieldTitle;
 
@@ -42,5 +45,14 @@ namespace AutotestTFS.PageObjects
 
         [FindsBy(How = How.XPath, Using = "//div[contains(@class,'rightPane')]//li[@aria-disabled='false']//span[text()='Сохранить']")]
         public IWebElement Save;
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class,'rightPane')]//ul[@class='menu-bar']//li[@aria-posinset='5' and @aria-label='Действия']")]
+        public IWebElement MenuActions;
+
+        [FindsBy(How = How.XPath, Using = "(//div[contains(@class,'rightPane')]//span[text()='Удалить'])[last()]")]
+        public IWebElement Delete;
+
+        [FindsBy(How = How.XPath, Using = "//div[@role='dialog']//span[text()='Удалить']")]
+        public IWebElement AlertDialogDelete;
     }
 }
