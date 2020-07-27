@@ -18,13 +18,13 @@ namespace AutotestTFS
         public void LoginFF()
         {
           
-            FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(@"C:\Users\tmironenko\Downloads\geckodriver-v0.24.0-win64", "geckodriver.exe");
-            service.FirefoxBinaryPath = @"C:\Users\tmironenko\AppData\Local\Mozilla Firefox\firefox.exe";
+            FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(@"C:\geckodriver-v0.24.0-win64", "geckodriver.exe");
+            service.FirefoxBinaryPath = @"C:\Mozilla Firefox\firefox.exe";
 
             IWebDriver driver = new FirefoxDriver(service);
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            driver.Navigate().GoToUrl("https://tmironenko:gayK8LB6@tfs2018.logrocon.ru/Ingos/ingosstrakh");
+            driver.Navigate().GoToUrl("https://{login}:{password}@{hostname}");
             driver.Close();
             driver.Close();
             driver.Quit();
@@ -39,7 +39,7 @@ namespace AutotestTFS
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("https://tmironenko:gayK8LB6@tfs2018.logrocon.ru/Ingos/ingosstrakh");
+            driver.Navigate().GoToUrl("https://{login}:{password}@{hostname}");
             TFSPage CurrentPage = new ProjectHomePage(driver);
             //CurrentPage.GoToHomePage.Click();
             //driver.FindElement(By.XPath("//span[text()='Все']/ancestor::div[@class='hub-group']//a[contains(@aria-label,'ingosstrakh')]")).Click();
@@ -69,7 +69,7 @@ namespace AutotestTFS
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             Actions MouseHover = new Actions(driver);
             driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("https://tmironenko:gayK8LB6@tfs2018.logrocon.ru/Ingos/ingosstrakh");
+            driver.Navigate().GoToUrl("https://{login}:{password}@{hostname}");
             TFSPage CurrentPage = new ProjectHomePage(driver);
             CurrentPage.WaitForLoadPage(driver);
             wait.Until(ExpectedConditions.ElementToBeClickable(CurrentPage.Dashboards));
@@ -108,7 +108,7 @@ namespace AutotestTFS
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             Actions MouseHover = new Actions(driver);
             driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("https://tmironenko:gayK8LB6@tfs2018.logrocon.ru/Ingos/ingosstrakh");
+            driver.Navigate().GoToUrl("https://{login}:{password}@{hostname}");
             ProjectHomePage StartPage = new ProjectHomePage(driver);
             StartPage.WaitForLoadPage(driver);
             wait.Until(ExpectedConditions.ElementToBeClickable(StartPage.Work));
@@ -118,14 +118,14 @@ namespace AutotestTFS
             QueriesPage qPage = new QueriesPage(driver);
             wait.Until(ExpectedConditions.ElementToBeClickable(qPage.Creation)).Click();
             wait.Until(ExpectedConditions.ElementToBeClickable(qPage.CreationTask)).Click();
-            driver.Navigate().GoToUrl("https://tfs2018.logrocon.ru/Ingos/ingosstrakh/_queries?witd=Task");
+            driver.Navigate().GoToUrl("https://{login}:{password}@{hostname}");
             wait.Until(ExpectedConditions.ElementToBeClickable(qPage.Creation)).Click();
             wait.Until(ExpectedConditions.ElementToBeClickable(qPage.CreationTask)).Click();
             qPage.WaitForLoadPage(driver);
             Assert.AreEqual(driver.FindElement(By.ClassName("info-text")).Text, "Поле \"Title\" не может быть пустым.");
             qPage.FieldTitle.SendKeys("testTask");
             qPage.AssertTo.Click();
-            qPage.AssertToSearch.SendKeys("tmironenko");
+            qPage.AssertToSearch.SendKeys("userName");
             qPage.AssertToSearch.SendKeys(Keys.Tab);
             qPage.Save.Click();
             qPage.WaitForLoadApplication();
@@ -145,7 +145,7 @@ namespace AutotestTFS
             Assert.AreEqual(driver.FindElement(By.ClassName("info-text")).Text, "Поле \"Title\" не может быть пустым.");
             qPage.FieldTitle.SendKeys("testBug");
             qPage.AssertTo.Click();
-            qPage.AssertToSearch.SendKeys("tmironenko");
+            qPage.AssertToSearch.SendKeys("userName");
             qPage.AssertToSearch.SendKeys(Keys.Tab);
             qPage.Save.Click();
             qPage.WaitForLoadApplication();
